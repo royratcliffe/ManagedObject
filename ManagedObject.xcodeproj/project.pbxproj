@@ -11,6 +11,7 @@
 		78B145B51C9180C5002F733B /* ManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B145B41C9180C5002F733B /* ManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78B145BC1C9180C5002F733B /* ManagedObject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B145B11C9180C5002F733B /* ManagedObject.framework */; };
 		78B145C11C9180C5002F733B /* ManagedObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B145C01C9180C5002F733B /* ManagedObjectTests.swift */; };
+		78B146381C9D1B3F002F733B /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B146371C9D1B3F002F733B /* StackTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		78B145BB1C9180C5002F733B /* ManagedObjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManagedObjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B145C01C9180C5002F733B /* ManagedObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectTests.swift; sourceTree = "<group>"; };
 		78B145C21C9180C5002F733B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78B146371C9D1B3F002F733B /* StackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				78B145C01C9180C5002F733B /* ManagedObjectTests.swift */,
+				78B146371C9D1B3F002F733B /* StackTests.swift */,
 				78B145C21C9180C5002F733B /* Info.plist */,
 			);
 			path = ManagedObjectTests;
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B146381C9D1B3F002F733B /* StackTests.swift in Sources */,
 				78B145C11C9180C5002F733B /* ManagedObjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
