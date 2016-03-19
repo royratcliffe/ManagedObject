@@ -34,6 +34,8 @@ import CoreData
 /// construction catches any error and logs it but nothing more.
 public struct Stack {
 
+  public init() {}
+
   public lazy var managedObjectModel: NSManagedObjectModel = {
     return NSManagedObjectModel.mergedModelFromBundles(nil)!
   }()
