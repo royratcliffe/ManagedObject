@@ -34,6 +34,8 @@ import CoreData
 /// construction catches any error and logs it but nothing more.
 public struct Stack {
 
+  public init() {}
+
   public lazy var managedObjectModel: NSManagedObjectModel = {
     return NSManagedObjectModel.mergedModelFromBundles(nil)!
   }()
@@ -68,7 +70,7 @@ public struct Stack {
   ///   can be used to make changes that asynchronous workers can subsequently
   ///   either save to pass the changes back to the main context, or discard
   ///   without changing the main context.
-  mutating func newWorkerContext() -> NSManagedObjectContext {
+  public mutating func newWorkerContext() -> NSManagedObjectContext {
     let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
     context.parentContext = self.mainContext
     return context
