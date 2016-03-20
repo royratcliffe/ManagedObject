@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */; };
 		7881C7541C9A98BB001280B2 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881C7531C9A98BB001280B2 /* Stack.swift */; };
 		78B145B51C9180C5002F733B /* ManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B145B41C9180C5002F733B /* ManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78B145BC1C9180C5002F733B /* ManagedObject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B145B11C9180C5002F733B /* ManagedObject.framework */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreRequestObserver.swift; sourceTree = "<group>"; };
 		7881C7531C9A98BB001280B2 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		78B145B11C9180C5002F733B /* ManagedObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ManagedObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B145B41C9180C5002F733B /* ManagedObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagedObject.h; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				78B145B41C9180C5002F733B /* ManagedObject.h */,
 				7881C7531C9A98BB001280B2 /* Stack.swift */,
+				786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */,
 				78B145B61C9180C5002F733B /* Info.plist */,
 			);
 			path = ManagedObject;
@@ -200,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */,
 				7881C7541C9A98BB001280B2 /* Stack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
