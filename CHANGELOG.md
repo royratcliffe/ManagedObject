@@ -2,6 +2,7 @@
 
 ## [0.1.3](https://github.com/royratcliffe/managedobject/tree/0.1.3) (2016-03-22)
 
+- Added change log
 - Added ObjectsDidChangeObserver class
 
 [Full Changelog](https://github.com/royratcliffe/managedobject/compare/0.1.2...0.1.3)
