@@ -2,6 +2,7 @@
 
 ## [0.1.3](https://github.com/royratcliffe/managedobject/tree/0.1.3) (2016-03-22)
 
+- Moved NSManagedObjectContext extensions from Snippets
 - Added change log
 - Added ObjectsDidChangeObserver class
 
