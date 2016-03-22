@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7839820F1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839820E1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift */; };
 		786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */; };
 		787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */; };
 		7881C7541C9A98BB001280B2 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881C7531C9A98BB001280B2 /* Stack.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7839820E1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+ManagedObject.swift"; sourceTree = "<group>"; };
 		786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreRequestObserver.swift; sourceTree = "<group>"; };
 		787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsDidChangeObserver.swift; sourceTree = "<group>"; };
 		7881C7531C9A98BB001280B2 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				7881C7531C9A98BB001280B2 /* Stack.swift */,
 				786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */,
 				787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */,
+				7839820E1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift */,
 				78B145B61C9180C5002F733B /* Info.plist */,
 			);
 			path = ManagedObject;
@@ -209,6 +212,7 @@
 				786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */,
 				7881C7541C9A98BB001280B2 /* Stack.swift in Sources */,
 				787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */,
+				7839820F1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
