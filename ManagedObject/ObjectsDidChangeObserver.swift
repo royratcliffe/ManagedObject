@@ -47,7 +47,7 @@ public class ObjectsDidChangeObserver: NSObject {
   /// Handles a managed-object change notification. Instantiates change
   /// controllers automatically if the Objective-C run-time environment has a
   /// controller class matching the entity name plus `ChangeController`.
-  private func objectsDidChange(notification: NSNotification) {
+  @objc private func objectsDidChange(notification: NSNotification) {
     guard let userInfo = notification.userInfo
       where NSManagedObjectContextObjectsDidChangeNotification == notification.name else
     {
@@ -136,7 +136,7 @@ public class ObjectsDidChangeObserver: NSObject {
   /// Adds this observer to the given notification centre.
   public func addToCenter(center: NSNotificationCenter) {
     center.addObserver(self,
-      selector: Selector("objectsDidChange:"),
+      selector: #selector(ObjectsDidChangeObserver.objectsDidChange(_:)),
       name: NSManagedObjectContextObjectsDidChangeNotification,
       object: nil)
   }
