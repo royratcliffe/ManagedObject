@@ -46,8 +46,7 @@ extension NSManagedObjectContext {
   /// `NSExpression` handle those machinations.
   public func fetchFirst(entityName: String,
     by keyPath: String,
-    value: AnyObject) throws -> AnyObject?
-  {
+    value: AnyObject) throws -> AnyObject? {
     let request = NSFetchRequest(entityName: entityName)
     request.predicate = NSComparisonPredicate(
       leftExpression: NSExpression(forKeyPath: keyPath),

@@ -49,8 +49,7 @@ public class ObjectsDidChangeObserver: NSObject {
   /// controller class matching the entity name plus `ChangeController`.
   @objc private func objectsDidChange(notification: NSNotification) {
     guard let userInfo = notification.userInfo
-      where NSManagedObjectContextObjectsDidChangeNotification == notification.name else
-    {
+      where NSManagedObjectContextObjectsDidChangeNotification == notification.name else {
       return
     }
 
@@ -77,15 +76,13 @@ public class ObjectsDidChangeObserver: NSObject {
             // copy. Changes needs re-assigning to the dictionary after
             // amending.
             objectsByEntityName[entityName] = objects
-          }
-          else {
+          } else {
             objectsByEntityName[entityName] = [object]
           }
           // Update the key-pair; objectsByEntityName is only a mutable copy,
           // not a mutable reference.
           objectsByEntityNameByChangeKey[changeKey] = objectsByEntityName
-        }
-        else {
+        } else {
           objectsByEntityNameByChangeKey[changeKey] = [entityName: objects]
         }
       }
