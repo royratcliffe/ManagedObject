@@ -75,6 +75,19 @@ extension NSManagedObjectContext {
     return try executeFetchRequest(request)
   }
 
+  /// Fetches the first _n_ objects by entity type.
+  /// - parameter entityType: Sub-class of `NSManagedObject` that represents an
+  ///   entity within this context's data model. The model must contain an
+  ///   entity description matching this type's class name (without any module
+  ///   prefix).
+  /// - parameter fetchLimit: Number of entities to fetch at most, one by
+  ///   default.
+  /// - returns: An array of fetched entities, zero or more, or `nil` if the
+  ///   fetched array does not convert to entities of the appropriate type.
+  public func fetchFirst<Entity: NSManagedObject>(entityType: Entity.Type, fetchLimit: Int = 1) throws -> [Entity]? {
+    return try fetchFirst(entityType.entityName) as? [Entity]
+  }
+
   /// Inserts a new object.
   /// - parameter entityName: Name of the entity to insert.
   /// - returns: New inserted object.
