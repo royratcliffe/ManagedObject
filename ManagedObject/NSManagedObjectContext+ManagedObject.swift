@@ -58,6 +58,13 @@ extension NSManagedObjectContext {
     return try executeFetchRequest(request).first
   }
 
+  /// Fetches the first `fetchLimit` managed objects, first _one_ by default.
+  public func fetchFirst(entityName: String, fetchLimit: Int = 1) throws -> [AnyObject] {
+    let request = NSFetchRequest(entityName: entityName)
+    request.fetchLimit = fetchLimit
+    return try executeFetchRequest(request)
+  }
+
   /// Inserts a new object.
   /// - parameter entityName: Name of the entity to insert.
   /// - returns: New inserted object.
