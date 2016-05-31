@@ -30,7 +30,7 @@ extension NSManagedObject {
   ///   name on the object's class name. Ignores the module name if the class
   ///   name includes a module.
   public class var entityName: String {
-    let className = NSStringFromClass(object_getClass(self))
+    let className = NSStringFromClass(self)
     let components = className.componentsSeparatedByString(".")
     return components.last ?? className
   }
