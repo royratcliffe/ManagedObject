@@ -38,6 +38,13 @@ extension NSManagedObjectContext {
     return try executeFetchRequest(request)
   }
 
+  /// Fetches all managed objects using an entity type. Requires that the
+  /// managed-object context contains an entity description matching the entity
+  /// class' last class-name component.
+  public func fetchAll<Entity: NSManagedObject>(entityType: Entity.Type) throws -> [Entity]? {
+    return try fetchAll(entityType.entityName) as? [Entity]
+  }
+
   /// Finds the first entity whose key matches a value.
   /// - returns: Optional matching managed object.
   ///
