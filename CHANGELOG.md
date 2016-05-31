@@ -1,18 +1,29 @@
 # Change Log
 
+## [0.1.6](https://github.com/royratcliffe/managedobject/tree/0.1.6) (2016-05-31)
+
+- Context implements fetchAll(entityType)
+- Renamed context fetch(entityName) to fetchAll(entityName)
+- Removed unnecessary call to object_getClass()
+- Added context's fetchFirst(entityName, fetchLimit=1) method
+- NSManagedObject extensions: entityName and init?(context)
+- Build phase runs SwiftLint
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.1.5...0.1.6)
+
 ## [0.1.3](https://github.com/royratcliffe/managedobject/tree/0.1.3) (2016-03-22)
 
 - Moved NSManagedObjectContext extensions from Snippets
 - Added change log
 - Added ObjectsDidChangeObserver class
 
-[Full Changelog](https://github.com/royratcliffe/managedobject/compare/0.1.2...0.1.3)
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.1.2...0.1.3)
 
 ## [0.1.2](https://github.com/royratcliffe/managedobject/tree/0.1.2) (2016-03-20)
 
 - Persistent-store request observer class
 
-[Full Changelog](https://github.com/royratcliffe/managedobject/compare/0.1.1...0.1.2)
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.1.1...0.1.2)
 
 ## [0.1.1](https://github.com/royratcliffe/managedobject/tree/0.1.1) (2016-03-19)
 
@@ -21,7 +32,7 @@
 - Stack needs a public initialiser
 - Set up for CocoaPods
 
-[Full Changelog](https://github.com/royratcliffe/managedobject/compare/0.1.0...0.1.1)
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.1.0...0.1.1)
 
 ## [0.1.0](https://github.com/royratcliffe/managedobject/tree/0.1.0) (2016-03-19)
 

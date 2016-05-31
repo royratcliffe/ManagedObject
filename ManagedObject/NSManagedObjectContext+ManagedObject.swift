@@ -33,9 +33,16 @@ extension NSManagedObjectContext {
   /// Builds a fetch request using the given entity name. Executes the fetch
   /// request within this context. Answers the resulting array of managed
   /// objects. Throws on error.
-  public func fetch(entityName: String) throws -> [AnyObject] {
+  public func fetchAll(entityName: String) throws -> [AnyObject] {
     let request = NSFetchRequest(entityName: entityName)
     return try executeFetchRequest(request)
+  }
+
+  /// Fetches all managed objects using an entity type. Requires that the
+  /// managed-object context contains an entity description matching the entity
+  /// class' last class-name component.
+  public func fetchAll<Entity: NSManagedObject>(entityType: Entity.Type) throws -> [Entity]? {
+    return try fetchAll(entityType.entityName) as? [Entity]
   }
 
   /// Finds the first entity whose key matches a value.
@@ -46,8 +53,7 @@ extension NSManagedObjectContext {
   /// `NSExpression` handle those machinations.
   public func fetchFirst(entityName: String,
     by keyPath: String,
-    value: AnyObject) throws -> AnyObject?
-  {
+    value: AnyObject) throws -> AnyObject? {
     let request = NSFetchRequest(entityName: entityName)
     request.predicate = NSComparisonPredicate(
       leftExpression: NSExpression(forKeyPath: keyPath),
@@ -57,6 +63,13 @@ extension NSManagedObjectContext {
       options: [])
     request.fetchLimit = 1
     return try executeFetchRequest(request).first
+  }
+
+  /// Fetches the first `fetchLimit` managed objects, first _one_ by default.
+  public func fetchFirst(entityName: String, fetchLimit: Int = 1) throws -> [AnyObject] {
+    let request = NSFetchRequest(entityName: entityName)
+    request.fetchLimit = fetchLimit
+    return try executeFetchRequest(request)
   }
 
   /// Inserts a new object.

@@ -44,8 +44,7 @@ public struct Stack {
     let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
     do {
       try coordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: "InMemory", URL: nil, options: nil)
-    }
-    catch {
+    } catch {
       NSLog("%@", error as NSError)
     }
     return coordinator
