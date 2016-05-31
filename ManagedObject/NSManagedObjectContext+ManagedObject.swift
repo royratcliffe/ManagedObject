@@ -41,6 +41,9 @@ extension NSManagedObjectContext {
   /// Fetches all managed objects using an entity type. Requires that the
   /// managed-object context contains an entity description matching the entity
   /// class' last class-name component.
+  /// - returns: An array of entity types, or `nil` if the array of managed
+  ///   objects cannot convert to an array of the required entities. Only throws
+  ///   if there was an error during the fetch.
   public func fetchAll<Entity: NSManagedObject>(entityType: Entity.Type) throws -> [Entity]? {
     return try fetchAll(entityType.entityName) as? [Entity]
   }
