@@ -26,6 +26,26 @@ import CoreData
 
 extension NSManagedObject {
 
+  /// - returns: Entity name for the managed-object sub-class. Bases the entity
+  ///   name on the object's class name. Ignores the module name if the class
+  ///   name includes a module.
+  public class var entityName: String {
+    let className = NSStringFromClass(object_getClass(self))
+    let components = className.componentsSeparatedByString(".")
+    return components.last ?? className
+  }
+
+  /// Initialises and inserts a new managed object into the given managed-object
+  /// context. Fails if the given context's data model does not contain an
+  /// entity description with a matching entity name.
+  public convenience init?(context: NSManagedObjectContext) {
+    let entityName = self.dynamicType.entityName
+    guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else {
+      return nil
+    }
+    self.init(entity: entity, insertIntoManagedObjectContext: context)
+  }
+
   /// Performs a block within this object's managed-object context queue,
   /// assuming that this managed object knows its context; otherwise does
   /// nothing. Just a convenience method.
