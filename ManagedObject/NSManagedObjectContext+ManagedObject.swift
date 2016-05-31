@@ -33,7 +33,7 @@ extension NSManagedObjectContext {
   /// Builds a fetch request using the given entity name. Executes the fetch
   /// request within this context. Answers the resulting array of managed
   /// objects. Throws on error.
-  public func fetch(entityName: String) throws -> [AnyObject] {
+  public func fetchAll(entityName: String) throws -> [AnyObject] {
     let request = NSFetchRequest(entityName: entityName)
     return try executeFetchRequest(request)
   }
