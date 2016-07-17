@@ -68,24 +68,23 @@ public class PersistentStoreRequestObserver: NSIncrementalStore {
   /// aftwards. This includes performing a fetch using a fetched results
   /// controller, i.e. the request executes here within the caller's stack an
   /// subsequently returns to the controller.
-  public override func executeRequest(request: NSPersistentStoreRequest,
-    withContext context: NSManagedObjectContext?) throws -> AnyObject {
+  public override func execute(_ request: NSPersistentStoreRequest,
+                               with context: NSManagedObjectContext?) throws -> AnyObject {
     var userInfo = [NSObject: AnyObject]()
     switch request.requestType {
-    case .FetchRequestType:
-      guard let fetchRequest = request as? NSFetchRequest else { break }
+    case .fetchRequestType:
+      guard let fetchRequest = request as? NSFetchRequest<NSManagedObject> else { break }
       userInfo[PersistentStoreRequestObserver.FetchKey] = fetchRequest
-    case .SaveRequestType:
+    case .saveRequestType:
       guard let saveRequest = request as? NSSaveChangesRequest else { break }
       userInfo[PersistentStoreRequestObserver.SaveKey] = saveRequest
     default:
       break
     }
     if !userInfo.isEmpty {
-      let center = NSNotificationCenter.defaultCenter()
-      center.postNotificationName(PersistentStoreRequestObserver.Notification,
-        object: self,
-        userInfo: userInfo)
+      let center = NotificationCenter.default
+      let name = Foundation.Notification.Name(rawValue: PersistentStoreRequestObserver.Notification)
+      center.post(name: name, object: self, userInfo: userInfo)
     }
 
     return []

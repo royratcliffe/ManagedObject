@@ -33,9 +33,9 @@ extension NSManagedObjectContext {
   /// Builds a fetch request using the given entity name. Executes the fetch
   /// request within this context. Answers the resulting array of managed
   /// objects. Throws on error.
-  public func fetchAll(entityName: String) throws -> [AnyObject] {
-    let request = NSFetchRequest(entityName: entityName)
-    return try executeFetchRequest(request)
+  public func fetchAll<Result: NSFetchRequestResult>(_ entityName: String) throws -> [Result] {
+    let request = NSFetchRequest<Result>(entityName: entityName)
+    return try fetch(request)
   }
 
   /// Fetches all managed objects using an entity type. Requires that the
@@ -44,8 +44,8 @@ extension NSManagedObjectContext {
   /// - returns: An array of entity types, or `nil` if the array of managed
   ///   objects cannot convert to an array of the required entities. Only throws
   ///   if there was an error during the fetch.
-  public func fetchAll<Entity: NSManagedObject>(entityType: Entity.Type) throws -> [Entity]? {
-    return try fetchAll(entityType.entityName) as? [Entity]
+  public func fetchAll<Entity: NSManagedObject>(_ entityType: Entity.Type) throws -> [Entity]? {
+    return try fetchAll(entityType.entityName)
   }
 
   /// Finds the first entity whose key matches a value.
@@ -54,25 +54,25 @@ extension NSManagedObjectContext {
   /// Implementation constructs the comparison predicate programmatically in
   /// order to avoid any issues with escaping string literals. Instead, let the
   /// `NSExpression` handle those machinations.
-  public func fetchFirst(entityName: String,
-    by keyPath: String,
-    value: AnyObject) throws -> AnyObject? {
-    let request = NSFetchRequest(entityName: entityName)
-    request.predicate = NSComparisonPredicate(
+  public func fetchFirst<Result: NSFetchRequestResult>(_ entityName: String,
+                         by keyPath: String,
+                         value: AnyObject) throws -> Result? {
+    let request = NSFetchRequest<Result>(entityName: entityName)
+    request.predicate = ComparisonPredicate(
       leftExpression: NSExpression(forKeyPath: keyPath),
       rightExpression: NSExpression(forConstantValue: value),
-      modifier: .DirectPredicateModifier,
-      type: .EqualToPredicateOperatorType,
+      modifier: .direct,
+      type: .equalTo,
       options: [])
     request.fetchLimit = 1
-    return try executeFetchRequest(request).first
+    return try fetch(request).first
   }
 
   /// Fetches the first `fetchLimit` managed objects, first _one_ by default.
-  public func fetchFirst(entityName: String, fetchLimit: Int = 1) throws -> [AnyObject] {
-    let request = NSFetchRequest(entityName: entityName)
+  public func fetchFirst<Result: NSFetchRequestResult>(_ entityName: String, fetchLimit: Int = 1) throws -> [Result] {
+    let request = NSFetchRequest<Result>(entityName: entityName)
     request.fetchLimit = fetchLimit
-    return try executeFetchRequest(request)
+    return try fetch(request)
   }
 
   /// Fetches the first _n_ objects by entity type.
@@ -84,8 +84,8 @@ extension NSManagedObjectContext {
   ///   default.
   /// - returns: An array of fetched entities, zero or more, or `nil` if the
   ///   fetched array does not convert to entities of the appropriate type.
-  public func fetchFirst<Entity: NSManagedObject>(entityType: Entity.Type, fetchLimit: Int = 1) throws -> [Entity]? {
-    return try fetchFirst(entityType.entityName) as? [Entity]
+  public func fetchFirst<Entity: NSManagedObject>(_ entityType: Entity.Type, fetchLimit: Int = 1) throws -> [Entity]? {
+    return try fetchFirst(entityType.entityName)
   }
 
   /// Inserts a new object.
@@ -95,16 +95,16 @@ extension NSManagedObjectContext {
   /// If entityName does not exist in the data model, CoreData will throw an
   /// internal consistency exception (NSInternalInconsistencyException) for the
   /// reason that CoreData cannot find the named entity within the model.
-  public func insertNewObject(entityName: String) -> NSManagedObject {
-    return NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self)
+  public func insertNewObject(_ entityName: String) -> NSManagedObject {
+    return NSEntityDescription.insertNewObject(forEntityName: entityName, into: self)
   }
 
   /// - returns: a new child managed-object context with private-queue or
   ///   main-queue concurrency. The receiver context becomes the new context's
   ///   parent.
-  public func newChildContext(concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext {
+  public func newChildContext(_ concurrencyType: NSManagedObjectContextConcurrencyType) -> NSManagedObjectContext {
     let context = NSManagedObjectContext(concurrencyType: concurrencyType)
-    context.parentContext = self
+    context.parent = self
     return context
   }
 

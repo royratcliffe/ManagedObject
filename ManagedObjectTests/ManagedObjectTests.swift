@@ -29,17 +29,17 @@ import CoreData
 class ManagedObjectTests: XCTestCase {
 
   // given
-  let masterContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+  let masterContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 
   func testNewChildContext() {
     // when
-    let mainContext = masterContext.newChildContext(.MainQueueConcurrencyType)
-    let workerContext = mainContext.newChildContext(.PrivateQueueConcurrencyType)
+    let mainContext = masterContext.newChildContext(.mainQueueConcurrencyType)
+    let workerContext = mainContext.newChildContext(.privateQueueConcurrencyType)
 
     // then
-    XCTAssert(workerContext.parentContext === mainContext)
-    XCTAssert(mainContext.parentContext === masterContext)
-    XCTAssertNil(masterContext.parentContext)
+    XCTAssert(workerContext.parent === mainContext)
+    XCTAssert(mainContext.parent === masterContext)
+    XCTAssertNil(masterContext.parent)
   }
 
 }

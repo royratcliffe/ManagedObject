@@ -31,31 +31,31 @@ extension NSManagedObject {
   ///   name includes a module.
   public class var entityName: String {
     let className = NSStringFromClass(self)
-    let components = className.componentsSeparatedByString(".")
+    let components = className.components(separatedBy: ".")
     return components.last ?? className
   }
 
   /// Initialises and inserts a new managed object into the given managed-object
   /// context. Fails if the given context's data model does not contain an
   /// entity description with a matching entity name.
-  public convenience init?(context: NSManagedObjectContext) {
+  public convenience init?(insertInto context: NSManagedObjectContext) {
     let entityName = self.dynamicType.entityName
-    guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else {
+    guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
       return nil
     }
-    self.init(entity: entity, insertIntoManagedObjectContext: context)
+    self.init(entity: entity, insertInto: context)
   }
 
   /// Performs a block within this object's managed-object context queue,
   /// assuming that this managed object knows its context; otherwise does
   /// nothing. Just a convenience method.
-  public func performBlock(block: () -> Void) {
-    managedObjectContext?.performBlock(block)
+  public func perform(_ block: () -> Void) {
+    managedObjectContext?.perform(block)
   }
 
   /// Performs a block within this object's context and waits for completion.
-  public func performBlockAndWait(block: () -> Void) {
-    managedObjectContext?.performBlockAndWait(block)
+  public func performAndWait(_ block: () -> Void) {
+    managedObjectContext?.performAndWait(block)
   }
 
 }
