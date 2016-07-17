@@ -22,7 +22,7 @@
  *
  ******************************************************************************/
 
-@import UIKit;
+@import Foundation;
 
 FOUNDATION_EXPORT double ManagedObjectVersionNumber;
 FOUNDATION_EXPORT const unsigned char ManagedObjectVersionString[];
