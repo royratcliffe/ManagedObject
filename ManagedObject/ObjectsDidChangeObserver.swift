@@ -48,8 +48,8 @@ public class ObjectsDidChangeObserver: NSObject {
   /// controllers automatically if the Objective-C run-time environment has a
   /// controller class matching the entity name plus `ChangeController`.
   @objc private func objectsDidChange(_ notification: Notification) {
-    guard let userInfo = (notification as NSNotification).userInfo
-          where NSNotification.Name.NSManagedObjectContextObjectsDidChange == notification.name else {
+    guard let userInfo = (notification as NSNotification).userInfo,
+          NSNotification.Name.NSManagedObjectContextObjectsDidChange == notification.name else {
       return
     }
 
