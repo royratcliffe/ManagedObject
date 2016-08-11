@@ -41,6 +41,9 @@ extension NSManagedObjectContext {
   /// Fetches all managed objects using an entity type. Requires that the
   /// managed-object context contains an entity description matching the entity
   /// class' last class-name component.
+  /// - returns: An array of entity types, or `nil` if the array of managed
+  ///   objects cannot convert to an array of the required entities. Only throws
+  ///   if there was an error during the fetch.
   public func fetchAll<Entity: NSManagedObject>(entityType: Entity.Type) throws -> [Entity]? {
     return try fetchAll(entityType.entityName) as? [Entity]
   }
@@ -70,6 +73,19 @@ extension NSManagedObjectContext {
     let request = NSFetchRequest(entityName: entityName)
     request.fetchLimit = fetchLimit
     return try executeFetchRequest(request)
+  }
+
+  /// Fetches the first _n_ objects by entity type.
+  /// - parameter entityType: Sub-class of `NSManagedObject` that represents an
+  ///   entity within this context's data model. The model must contain an
+  ///   entity description matching this type's class name (without any module
+  ///   prefix).
+  /// - parameter fetchLimit: Number of entities to fetch at most, one by
+  ///   default.
+  /// - returns: An array of fetched entities, zero or more, or `nil` if the
+  ///   fetched array does not convert to entities of the appropriate type.
+  public func fetchFirst<Entity: NSManagedObject>(entityType: Entity.Type, fetchLimit: Int = 1) throws -> [Entity]? {
+    return try fetchFirst(entityType.entityName) as? [Entity]
   }
 
   /// Inserts a new object.
