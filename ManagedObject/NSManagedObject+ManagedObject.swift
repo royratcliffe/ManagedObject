@@ -38,7 +38,7 @@ extension NSManagedObject {
   /// Initialises and inserts a new managed object into the given managed-object
   /// context. Fails if the given context's data model does not contain an
   /// entity description with a matching entity name.
-  public convenience init?(context: NSManagedObjectContext) {
+  public convenience init?(with context: NSManagedObjectContext) {
     let entityName = self.dynamicType.entityName
     guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context) else {
       return nil
