@@ -1,7 +1,7 @@
 # coding: utf-8
 Pod::Spec.new do |spec|
   spec.name = 'ManagedObject'
-  spec.version = '0.1.6'
+  spec.version = '0.1.7'
   spec.summary = 'Core Data extensions'
   spec.description = <<-DESCRIPTION.gsub(/\s+/, ' ').chomp
   iOS framework containing useful Core Data extensions in Swift.
