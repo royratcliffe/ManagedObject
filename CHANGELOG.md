@@ -1,5 +1,15 @@
 # Change Log
 
+## [0.1.7](https://github.com/royratcliffe/managedobject/tree/0.1.7) (2016-08-11)
+
+- Merge branch 'feature/swift_2_3' into develop
+- Conditional initialiser "with context" for NSManagedObject
+- Using Xcode 8, Swift 2.3
+- Fetch first managed object(s) by entity type
+- Comment about return value for fetchAll(entityType)
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.1.6...0.1.7)
+
 ## [0.1.6](https://github.com/royratcliffe/managedobject/tree/0.1.6) (2016-05-31)
 
 - Context implements fetchAll(entityType)
