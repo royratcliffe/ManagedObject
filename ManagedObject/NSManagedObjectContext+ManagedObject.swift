@@ -58,7 +58,7 @@ extension NSManagedObjectContext {
                          by keyPath: String,
                          value: AnyObject) throws -> Result? {
     let request = NSFetchRequest<Result>(entityName: entityName)
-    request.predicate = ComparisonPredicate(
+    request.predicate = NSComparisonPredicate(
       leftExpression: NSExpression(forKeyPath: keyPath),
       rightExpression: NSExpression(forConstantValue: value),
       modifier: .direct,
