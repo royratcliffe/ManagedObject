@@ -65,8 +65,8 @@
 		78B145A71C9180C5002F733B = {
 			isa = PBXGroup;
 			children = (
-				78B145B31C9180C5002F733B /* ManagedObject */,
-				78B145BF1C9180C5002F733B /* ManagedObjectTests */,
+				78B145B31C9180C5002F733B /* Sources */,
+				78B145BF1C9180C5002F733B /* Tests */,
 				78B145B21C9180C5002F733B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,7 +80,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		78B145B31C9180C5002F733B /* ManagedObject */ = {
+		78B145B31C9180C5002F733B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				78B145B41C9180C5002F733B /* ManagedObject.h */,
@@ -91,17 +91,17 @@
 				78BD14221CA44B4B0031287F /* NSManagedObject+ManagedObject.swift */,
 				78B145B61C9180C5002F733B /* Info.plist */,
 			);
-			path = ManagedObject;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		78B145BF1C9180C5002F733B /* ManagedObjectTests */ = {
+		78B145BF1C9180C5002F733B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				78B145C01C9180C5002F733B /* ManagedObjectTests.swift */,
 				78B146371C9D1B3F002F733B /* StackTests.swift */,
 				78B145C21C9180C5002F733B /* Info.plist */,
 			);
-			path = ManagedObjectTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,7 +356,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ManagedObject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.pioneeringsoftware.ManagedObject;
@@ -375,7 +375,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ManagedObject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.pioneeringsoftware.ManagedObject;
@@ -389,7 +389,7 @@
 		78B145C91C9180C5002F733B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = ManagedObjectTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.pioneeringsoftware.ManagedObjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -400,7 +400,7 @@
 		78B145CA1C9180C5002F733B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = ManagedObjectTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.pioneeringsoftware.ManagedObjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

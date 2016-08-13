@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.authors = { 'Roy Ratcliffe' => 'roy@pioneeringsoftware.co.uk' }
   spec.source = { git: 'https://github.com/royratcliffe/ManagedObject.git',
                   tag: spec.version.to_s }
-  spec.source_files = 'ManagedObject/**/*.{swift,h}'
+  spec.source_files = 'Sources/**/*.{swift,h}'
   spec.platform = :ios, '9.0'
   spec.requires_arc = true
 end
