@@ -47,9 +47,9 @@ public class ObjectsDidChangeObserver: NSObject {
   /// Handles a managed-object change notification. Instantiates change
   /// controllers automatically if the Objective-C run-time environment has a
   /// controller class matching the entity name plus `ChangeController`.
-  @objc private func objectsDidChange(notification: NSNotification) {
-    guard let userInfo = notification.userInfo
-      where NSManagedObjectContextObjectsDidChangeNotification == notification.name else {
+  @objc private func objectsDidChange(_ notification: Notification) {
+    guard let userInfo = (notification as NSNotification).userInfo,
+          NSNotification.Name.NSManagedObjectContextObjectsDidChange == notification.name else {
       return
     }
 
@@ -102,8 +102,8 @@ public class ObjectsDidChangeObserver: NSObject {
           }
         }
         if let controller = changeController {
-          if controller.respondsToSelector(selector) {
-            controller.performSelector(selector, withObject: objects)
+          if controller.responds(to: selector) {
+            controller.perform(selector, with: objects)
           }
         }
       }
@@ -118,28 +118,28 @@ public class ObjectsDidChangeObserver: NSObject {
   /// Adds a change controller for the given entity name. There can be only one
   /// controller for each entity. If your application requires more than one
   /// controller, use more than one observer.
-  public func addChangeController(controller: NSObject, forEntityName entityName: String) {
-    changeControllersByEntityName[entityName] = controller
+  public func add(changeController: NSObject, forEntityName entityName: String) {
+    changeControllersByEntityName[entityName] = changeController
   }
 
   /// Removes a change controller.
-  public func removeChangeControllerForEntityName(entityName: String) {
-    changeControllersByEntityName.removeValueForKey(entityName)
+  public func removeChangeController(forEntityName entityName: String) {
+    changeControllersByEntityName.removeValue(forKey: entityName)
   }
 
   //----------------------------------------------------------------------------
   // MARK: - Notification Centre
 
   /// Adds this observer to the given notification centre.
-  public func addToCenter(center: NSNotificationCenter) {
+  public func add(to center: NotificationCenter) {
     center.addObserver(self,
       selector: #selector(ObjectsDidChangeObserver.objectsDidChange(_:)),
-      name: NSManagedObjectContextObjectsDidChangeNotification,
+      name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
       object: nil)
   }
 
   /// Removes this observer from the given notification centre.
-  public func removeFromCenter(center: NSNotificationCenter) {
+  public func remove(from center: NotificationCenter) {
     center.removeObserver(self)
   }
 

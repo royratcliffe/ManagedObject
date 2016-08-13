@@ -1,5 +1,14 @@
 # Change Log
 
+## [0.2.0](https://github.com/royratcliffe/managedobject/tree/0.2.0) (2016-08-13)
+
+- Renamed sub-folders to Sources and Tests
+- Added Travis configuration
+- Merge branch 'feature/swift_3_0' into develop
+- Restore NS prefix for comparison predicate
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.1.7...0.2.0)
+
 ## [0.1.7](https://github.com/royratcliffe/managedobject/tree/0.1.7) (2016-08-11)
 
 - Merge branch 'feature/swift_2_3' into develop

@@ -37,13 +37,13 @@ public struct Stack {
   public init() {}
 
   public lazy var managedObjectModel: NSManagedObjectModel = {
-    return NSManagedObjectModel.mergedModelFromBundles(nil)!
+    return NSManagedObjectModel.mergedModel(from: nil)!
   }()
 
   public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
     let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
     do {
-      try coordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: "InMemory", URL: nil, options: nil)
+      try coordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: "InMemory", at: nil, options: nil)
     } catch {
       NSLog("%@", error as NSError)
     }
@@ -51,7 +51,7 @@ public struct Stack {
   }()
 
   public lazy var masterContext: NSManagedObjectContext = {
-    let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     context.persistentStoreCoordinator = self.persistentStoreCoordinator
     return context
   }()
@@ -60,8 +60,8 @@ public struct Stack {
   ///   dispatch queue, including the user interface. The main context is a
   ///   master-context child.
   public lazy var mainContext: NSManagedObjectContext = {
-    let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-    context.parentContext = self.masterContext
+    let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    context.parent = self.masterContext
     return context
   }()
 
@@ -70,8 +70,8 @@ public struct Stack {
   ///   either save to pass the changes back to the main context, or discard
   ///   without changing the main context.
   public mutating func newWorkerContext() -> NSManagedObjectContext {
-    let context = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-    context.parentContext = self.mainContext
+    let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+    context.parent = self.mainContext
     return context
   }
 
