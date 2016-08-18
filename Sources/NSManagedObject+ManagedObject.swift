@@ -39,7 +39,7 @@ extension NSManagedObject {
   /// context. Fails if the given context's data model does not contain an
   /// entity description with a matching entity name.
   public convenience init?(insertInto context: NSManagedObjectContext) {
-    let entityName = self.dynamicType.entityName
+    let entityName = type(of: self).entityName
     guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
       return nil
     }
