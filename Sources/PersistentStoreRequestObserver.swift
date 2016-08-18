@@ -69,15 +69,15 @@ public class PersistentStoreRequestObserver: NSIncrementalStore {
   /// controller, i.e. the request executes here within the caller's stack an
   /// subsequently returns to the controller.
   public override func execute(_ request: NSPersistentStoreRequest,
-                               with context: NSManagedObjectContext?) throws -> AnyObject {
-    var userInfo = [NSObject: AnyObject]()
+                               with context: NSManagedObjectContext?) throws -> Any {
+    var userInfo = [NSObject: Any]()
     switch request.requestType {
     case .fetchRequestType:
       guard let fetchRequest = request as? NSFetchRequest<NSManagedObject> else { break }
-      userInfo[PersistentStoreRequestObserver.FetchKey] = fetchRequest
+      userInfo[PersistentStoreRequestObserver.FetchKey as NSString] = fetchRequest
     case .saveRequestType:
       guard let saveRequest = request as? NSSaveChangesRequest else { break }
-      userInfo[PersistentStoreRequestObserver.SaveKey] = saveRequest
+      userInfo[PersistentStoreRequestObserver.SaveKey as NSString] = saveRequest
     default:
       break
     }

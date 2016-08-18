@@ -39,7 +39,7 @@ extension NSManagedObject {
   /// context. Fails if the given context's data model does not contain an
   /// entity description with a matching entity name.
   public convenience init?(insertInto context: NSManagedObjectContext) {
-    let entityName = self.dynamicType.entityName
+    let entityName = type(of: self).entityName
     guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
       return nil
     }
@@ -49,12 +49,12 @@ extension NSManagedObject {
   /// Performs a block within this object's managed-object context queue,
   /// assuming that this managed object knows its context; otherwise does
   /// nothing. Just a convenience method.
-  public func perform(_ block: () -> Void) {
+  public func perform(_ block: @escaping () -> Void) {
     managedObjectContext?.perform(block)
   }
 
   /// Performs a block within this object's context and waits for completion.
-  public func performAndWait(_ block: () -> Void) {
+  public func performAndWait(_ block: @escaping () -> Void) {
     managedObjectContext?.performAndWait(block)
   }
 
