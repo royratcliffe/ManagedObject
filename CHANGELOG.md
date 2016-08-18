@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.2.1](https://github.com/royratcliffe/managedobject/tree/0.2.1) (2016-08-18)
+
+- `Any` instead of `AnyObject`, `String` cast to `NSString`
+- Mark escaping blocks
+- `type(of:)` replaces `dynamicType`
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.2.0...0.2.1)
+
 ## [0.2.0](https://github.com/royratcliffe/managedobject/tree/0.2.0) (2016-08-13)
 
 - Renamed sub-folders to Sources and Tests
