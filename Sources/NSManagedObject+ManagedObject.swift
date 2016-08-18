@@ -49,12 +49,12 @@ extension NSManagedObject {
   /// Performs a block within this object's managed-object context queue,
   /// assuming that this managed object knows its context; otherwise does
   /// nothing. Just a convenience method.
-  public func perform(_ block: () -> Void) {
+  public func perform(_ block: @escaping () -> Void) {
     managedObjectContext?.perform(block)
   }
 
   /// Performs a block within this object's context and waits for completion.
-  public func performAndWait(_ block: () -> Void) {
+  public func performAndWait(_ block: @escaping () -> Void) {
     managedObjectContext?.performAndWait(block)
   }
 
