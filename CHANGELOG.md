@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.2.2](https://github.com/royratcliffe/managedobject/tree/0.2.2) (2016-08-18)
+
+- Use `Any` rather than `AnyObject`
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.2.1...0.2.2)
+
 ## [0.2.1](https://github.com/royratcliffe/managedobject/tree/0.2.1) (2016-08-18)
 
 - `Any` instead of `AnyObject`, `String` cast to `NSString`
