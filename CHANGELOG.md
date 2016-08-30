@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.2.3](https://github.com/royratcliffe/managedobject/tree/0.2.3) (2016-08-30)
+
+- Added managed-object context's automaticallyMergesChanges(from:queue:)
+- Added NSManagedObjectContext.parents with tests
+- Notification name for PersistentStoreRequestNotification
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.2.2...0.2.3)
+
 ## [0.2.2](https://github.com/royratcliffe/managedobject/tree/0.2.2) (2016-08-18)
 
 - Use `Any` rather than `AnyObject`
