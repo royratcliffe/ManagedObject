@@ -108,4 +108,16 @@ extension NSManagedObjectContext {
     return context
   }
 
+  /// Returns all the parents of this context. Answers an array of contexts, an
+  /// empty array if no parents. The result does *not* include this context.
+  public var parents: [NSManagedObjectContext] {
+    var parents = [NSManagedObjectContext]()
+    var context = parent
+    while context != nil {
+      parents.append(context!)
+      context = context!.parent
+    }
+    return parents
+  }
+
 }
