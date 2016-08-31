@@ -41,4 +41,15 @@ class StackTests: XCTestCase {
     XCTAssertNotNil(workerContext)
   }
 
+  func testContextParents() {
+    // when
+    let workerContext = managedObjectStack.newWorkerContext()
+    let mainContext = managedObjectStack.mainContext
+    let masterContext = managedObjectStack.masterContext
+    // then
+    XCTAssertEqual(workerContext.parents.count, 2)
+    XCTAssertEqual(mainContext.parents.count, 1)
+    XCTAssertEqual(masterContext.parents.count, 0)
+  }
+
 }

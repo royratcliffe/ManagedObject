@@ -83,11 +83,17 @@ public class PersistentStoreRequestObserver: NSIncrementalStore {
     }
     if !userInfo.isEmpty {
       let center = NotificationCenter.default
-      let name = Foundation.Notification.Name(rawValue: PersistentStoreRequestObserver.Notification)
+      let name = Foundation.Notification.Name.PersistentStoreRequestNotification
       center.post(name: name, object: self, userInfo: userInfo)
     }
 
     return []
   }
+
+}
+
+extension Notification.Name {
+
+  public static let PersistentStoreRequestNotification = Notification.Name(PersistentStoreRequestObserver.Notification)
 
 }

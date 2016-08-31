@@ -99,6 +99,14 @@ extension NSManagedObjectContext {
     return NSEntityDescription.insertNewObject(forEntityName: entityName, into: self)
   }
 
+  /// Inserts a new object by its entity type.
+  /// - parameter entityType: Managed-object sub-class representing the entity.
+  /// - returns: New instance of managed-object sub-class, or `nil` if new
+  ///   instance did not successfully convert to the given sub-class.
+  public func insertNewObject<Entity: NSManagedObject>(entityType: Entity.Type) -> Entity? {
+    return NSEntityDescription.entity(forEntityName: entityType.entityName, in: self) as? Entity
+  }
+
   /// - returns: a new child managed-object context with private-queue or
   ///   main-queue concurrency. The receiver context becomes the new context's
   ///   parent.
@@ -106,6 +114,34 @@ extension NSManagedObjectContext {
     let context = NSManagedObjectContext(concurrencyType: concurrencyType)
     context.parent = self
     return context
+  }
+
+  /// Returns all the parents of this context. Answers an array of contexts, an
+  /// empty array if no parents. The result does *not* include this context.
+  public var parents: [NSManagedObjectContext] {
+    var parents = [NSManagedObjectContext]()
+    var context = parent
+    while context != nil {
+      parents.append(context!)
+      context = context!.parent
+    }
+    return parents
+  }
+
+  /// Adds a block observer to this context that automatically merges changes
+  /// from the given context whenever that context saves. Adds a new observer to
+  /// the default notification centre. The merging block runs in the given
+  /// operation queue, if given.
+  /// - parameter context: Managed-object context to observe and merge from.
+  /// - parameter queue: Optional operation queue on which to request the merge.
+  /// - returns: An opaque observer object representing the merging block. Use
+  ///   this to remove it.
+  func automaticallyMergesChanges(from context: NSManagedObjectContext, queue: OperationQueue? = nil) -> NSObjectProtocol {
+    let center = NotificationCenter.default
+    let name = Notification.Name.NSManagedObjectContextDidSave
+    return center.addObserver(forName: name, object: context, queue: queue) { [weak self] (notification) in
+      self?.mergeChanges(fromContextDidSave: notification)
+    }
   }
 
 }
