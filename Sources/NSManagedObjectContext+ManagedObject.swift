@@ -99,6 +99,14 @@ extension NSManagedObjectContext {
     return NSEntityDescription.insertNewObject(forEntityName: entityName, into: self)
   }
 
+  /// Inserts a new object by its entity type.
+  /// - parameter entityType: Managed-object sub-class representing the entity.
+  /// - returns: New instance of managed-object sub-class, or `nil` if new
+  ///   instance did not successfully convert to the given sub-class.
+  public func insertNewObject<Entity: NSManagedObject>(entityType: Entity.Type) -> Entity? {
+    return NSEntityDescription.entity(forEntityName: entityType.entityName, in: self) as? Entity
+  }
+
   /// - returns: a new child managed-object context with private-queue or
   ///   main-queue concurrency. The receiver context becomes the new context's
   ///   parent.
