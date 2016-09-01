@@ -136,7 +136,7 @@ extension NSManagedObjectContext {
   /// - parameter queue: Optional operation queue on which to request the merge.
   /// - returns: An opaque observer object representing the merging block. Use
   ///   this to remove it.
-  func automaticallyMergesChanges(from context: NSManagedObjectContext, queue: OperationQueue? = nil) -> NSObjectProtocol {
+  public func automaticallyMergesChanges(from context: NSManagedObjectContext, queue: OperationQueue? = nil) -> NSObjectProtocol {
     let center = NotificationCenter.default
     let name = Notification.Name.NSManagedObjectContextDidSave
     return center.addObserver(forName: name, object: context, queue: queue) { [weak self] (notification) in
