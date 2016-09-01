@@ -144,4 +144,26 @@ extension NSManagedObjectContext {
     }
   }
 
+  /// Sets up an observer block for context-will-save notifications. Updates
+  /// `createdAt` with the current date and time when the context sees a newly
+  /// inserted object. Updates `updatedAt` when the context sees an
+  /// update. Ignores deletions. Only stamps those objects that respond to
+  /// setters for the created- and updated-at dates.
+  public func automaticallyUpdatesTimestamps(queue: OperationQueue? = nil) -> NSObjectProtocol {
+    let center = NotificationCenter.default
+    let name = Notification.Name.NSManagedObjectContextWillSave
+    return center.addObserver(forName: name, object: self, queue: queue) { [weak self] (_) in
+      self?.insertedObjects.filter {
+        $0.responds(to: Selector(("setCreatedAt:")))
+      }.forEach {
+        $0.setValue(Date(), forKey: "createdAt")
+      }
+      self?.updatedObjects.filter {
+        $0.responds(to: Selector(("setUpdatedAt:")))
+      }.forEach {
+        $0.setValue(Date(), forKey: "updatedAt")
+      }
+    }
+  }
+
 }
