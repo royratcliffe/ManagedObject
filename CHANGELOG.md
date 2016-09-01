@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.3.0](https://github.com/royratcliffe/managedobject/tree/0.3.0) (2016-09-01)
+
+- Managed-object context method: `automaticallyUpdatesTimestamps`
+- Public access to `automaticallyMergesChanges`
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.2.3...0.3.0)
+
 ## [0.2.3](https://github.com/royratcliffe/managedobject/tree/0.2.3) (2016-08-30)
 
 - Context insertNewObject by entity type
