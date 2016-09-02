@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.4.0](https://github.com/royratcliffe/managedobject/tree/0.4.0) (2016-09-02)
+
+- Context methods: 
+    - `automaticallyMergesChangesFromChildren(queue:)` and 
+    - `automaticallyMergesChanges(queue:shouldMergeChanges:)`
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.3.0...0.4.0)
+
 ## [0.3.0](https://github.com/royratcliffe/managedobject/tree/0.3.0) (2016-09-01)
 
 - Managed-object context method: `automaticallyUpdatesTimestamps`
