@@ -144,6 +144,44 @@ extension NSManagedObjectContext {
     }
   }
 
+  /// Sets up automatic change merging for this context from all *direct* child
+  /// contexts. Observes all context will-save notifications. Filters the
+  /// notifications for contexts where the parent's identity matches this
+  /// context.
+  /// - parameter queue: Optional operation queue on which to merge changes.
+  public func automaticallyMergesChangesFromChildren(queue: OperationQueue? = nil) -> NSObjectProtocol {
+    return automaticallyMergesChanges(queue: queue) { (from, to) in
+      from.parent === to
+    }
+  }
+
+  /// Sets up a merge-changes observer based on a given condition block. Merging
+  /// only occurs if the condition block answers `true`, given the context that
+  /// merging will take changes from, as well as the context into which the
+  /// changes will merge.
+  /// - parameter queue: Optional operation queue on which to merge changes.
+  /// - parameter shouldMergeChanges: Escaping capture that answers `true` if
+  ///   the merge should proceed. Its two arguments provide the context with
+  ///   changes that might be merged followed by the context to which the
+  ///   changes will merge if the capture answers `true`. The capture runs in
+  ///   another thread.
+  /// - parameter from: Context to merge changes from.
+  /// - parameter to: Context for merging to.
+  public func automaticallyMergesChanges(queue: OperationQueue? = nil,
+                                         shouldMergeChanges: @escaping (_ from: NSManagedObjectContext,
+                                                                        _ to: NSManagedObjectContext) -> Bool) -> NSObjectProtocol {
+    return NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextDidSave,
+                                                  object: nil,
+                                                  queue: queue) { [weak self] (notification) in
+      guard let to = self,
+            let from = notification.object as? NSManagedObjectContext,
+            shouldMergeChanges(from, to) else {
+        return
+      }
+      to.mergeChanges(fromContextDidSave: notification)
+    }
+  }
+
   /// Sets up an observer block for context-will-save notifications. Updates
   /// `createdAt` with the current date and time when the context sees a newly
   /// inserted object. Updates `updatedAt` when the context sees an
