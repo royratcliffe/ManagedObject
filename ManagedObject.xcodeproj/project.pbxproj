@@ -11,6 +11,8 @@
 		786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */; };
 		787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */; };
 		7881C7541C9A98BB001280B2 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881C7531C9A98BB001280B2 /* Stack.swift */; };
+		789B73FA1D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B73F91D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift */; };
+		789B73FC1D7EC25400B90F6B /* ObjectsDidChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B73FB1D7EC25400B90F6B /* ObjectsDidChange.swift */; };
 		78B145B51C9180C5002F733B /* ManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B145B41C9180C5002F733B /* ManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78B145BC1C9180C5002F733B /* ManagedObject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B145B11C9180C5002F733B /* ManagedObject.framework */; };
 		78B145C11C9180C5002F733B /* ManagedObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B145C01C9180C5002F733B /* ManagedObjectTests.swift */; };
@@ -33,6 +35,8 @@
 		786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreRequestObserver.swift; sourceTree = "<group>"; };
 		787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsDidChangeObserver.swift; sourceTree = "<group>"; };
 		7881C7531C9A98BB001280B2 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		789B73F91D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+ManagedObject.swift"; sourceTree = "<group>"; };
+		789B73FB1D7EC25400B90F6B /* ObjectsDidChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsDidChange.swift; sourceTree = "<group>"; };
 		78B145B11C9180C5002F733B /* ManagedObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ManagedObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B145B41C9180C5002F733B /* ManagedObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagedObject.h; sourceTree = "<group>"; };
 		78B145B61C9180C5002F733B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */,
 				7839820E1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift */,
 				78BD14221CA44B4B0031287F /* NSManagedObject+ManagedObject.swift */,
+				789B73F91D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift */,
+				789B73FB1D7EC25400B90F6B /* ObjectsDidChange.swift */,
 				78B145B61C9180C5002F733B /* Info.plist */,
 			);
 			path = Sources;
@@ -235,6 +241,8 @@
 				786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */,
 				7881C7541C9A98BB001280B2 /* Stack.swift in Sources */,
 				787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */,
+				789B73FA1D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift in Sources */,
+				789B73FC1D7EC25400B90F6B /* ObjectsDidChange.swift in Sources */,
 				7839820F1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
