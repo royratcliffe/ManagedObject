@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.5.0](https://github.com/royratcliffe/managedobject/tree/0.5.0) (2016-09-06)
+
+- Type alias for escaping should-merge-changes block
+- Added ObjectsDidChangeBlock type-alias
+- ObjectsDidChange notification helpers
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.4.0...0.5.0)
+
 ## [0.4.0](https://github.com/royratcliffe/managedobject/tree/0.4.0) (2016-09-02)
 
 - Context methods: 
