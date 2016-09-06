@@ -155,6 +155,11 @@ extension NSManagedObjectContext {
     }
   }
 
+  public typealias ShouldMergeChanges = @escaping (
+    _ from: NSManagedObjectContext,
+    _ to: NSManagedObjectContext
+  ) -> Bool
+
   /// Sets up a merge-changes observer based on a given condition block. Merging
   /// only occurs if the condition block answers `true`, given the context that
   /// merging will take changes from, as well as the context into which the
@@ -168,8 +173,7 @@ extension NSManagedObjectContext {
   /// - parameter from: Context to merge changes from.
   /// - parameter to: Context for merging to.
   public func automaticallyMergesChanges(queue: OperationQueue? = nil,
-                                         shouldMergeChanges: @escaping (_ from: NSManagedObjectContext,
-                                                                        _ to: NSManagedObjectContext) -> Bool) -> NSObjectProtocol {
+                                         shouldMergeChanges: ShouldMergeChanges) -> NSObjectProtocol {
     return NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextDidSave,
                                                   object: nil,
                                                   queue: queue) { [weak self] (notification) in
