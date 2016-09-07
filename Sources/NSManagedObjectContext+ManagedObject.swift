@@ -208,4 +208,15 @@ extension NSManagedObjectContext {
     }
   }
 
+  /// Convenience method for instantiating a new fetched-result controller using
+  /// this context. Defaults to no section-name sorting and no caching.
+  public func fetchedResultsController<Result: NSFetchRequestResult>(fetchRequest: NSFetchRequest<Result>,
+                                       sectionNameKeyPath: String? = nil,
+                                       cacheName: String? = nil) -> NSFetchedResultsController<Result> {
+    return NSFetchedResultsController(fetchRequest: fetchRequest,
+                                      managedObjectContext: self,
+                                      sectionNameKeyPath: sectionNameKeyPath,
+                                      cacheName: cacheName)
+  }
+
 }
