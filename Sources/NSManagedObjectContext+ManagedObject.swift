@@ -104,7 +104,7 @@ extension NSManagedObjectContext {
   /// - returns: New instance of managed-object sub-class, or `nil` if new
   ///   instance did not successfully convert to the given sub-class.
   public func insertNewObject<Entity: NSManagedObject>(entityType: Entity.Type) -> Entity? {
-    return NSEntityDescription.entity(forEntityName: entityType.entityName, in: self) as? Entity
+    return NSEntityDescription.insertNewObject(forEntityName: entityType.entityName, into: self) as? Entity
   }
 
   /// - returns: a new child managed-object context with private-queue or
@@ -206,6 +206,17 @@ extension NSManagedObjectContext {
         $0.setValue(Date(), forKey: "updatedAt")
       }
     }
+  }
+
+  /// Convenience method for instantiating a new fetched-result controller using
+  /// this context. Defaults to no section-name sorting and no caching.
+  public func fetchedResultsController<Result: NSFetchRequestResult>(fetchRequest: NSFetchRequest<Result>,
+                                       sectionNameKeyPath: String? = nil,
+                                       cacheName: String? = nil) -> NSFetchedResultsController<Result> {
+    return NSFetchedResultsController(fetchRequest: fetchRequest,
+                                      managedObjectContext: self,
+                                      sectionNameKeyPath: sectionNameKeyPath,
+                                      cacheName: cacheName)
   }
 
 }
