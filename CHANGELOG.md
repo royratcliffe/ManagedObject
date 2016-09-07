@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.6.0](https://github.com/royratcliffe/managedobject/tree/0.6.0) (2016-09-07)
+
+- Convenience method for instantiating new fetched-result controller
+- FIX: insert new object by entity type
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.5.0...0.6.0)
+
 ## [0.5.0](https://github.com/royratcliffe/managedobject/tree/0.5.0) (2016-09-06)
 
 - Type alias for escaping should-merge-changes block
