@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.7.0](https://github.com/royratcliffe/managedobject/tree/0.7.0) (2016-09-08)
+
+- Fixes @escaping may only be applied to parameters of function type (Xcode 8 GM)
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.6.0...0.7.0)
+
 ## [0.6.0](https://github.com/royratcliffe/managedobject/tree/0.6.0) (2016-09-07)
 
 - Convenience method for instantiating new fetched-result controller
