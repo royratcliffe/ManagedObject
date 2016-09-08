@@ -27,7 +27,7 @@ import CoreData
 
 extension NotificationCenter {
 
-  public typealias ObjectsDidChangeBlock = @escaping (_ objectsDidChange: ObjectsDidChange) -> Void
+  public typealias ObjectsDidChangeBlock = (_ objectsDidChange: ObjectsDidChange) -> Void
 
   /// Adds an objects-did-change observer block to the notification
   /// centre. Invokes a block using a ObjectsDidChange structure which
@@ -44,7 +44,7 @@ extension NotificationCenter {
   /// - returns: Opaque object used to remove the observer.
   public func addObjectsDidChangeObserver(context: NSManagedObjectContext?,
                                           queue: OperationQueue? = nil,
-                                          using block: ObjectsDidChangeBlock) -> NSObjectProtocol {
+                                          using block: @escaping ObjectsDidChangeBlock) -> NSObjectProtocol {
     let name = Notification.Name.NSManagedObjectContextObjectsDidChange
     return addObserver(forName: name, object: context, queue: queue) { (notification) in
       if let objectsDidChange = ObjectsDidChange(notification: notification) {
