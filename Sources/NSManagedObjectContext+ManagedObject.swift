@@ -155,8 +155,6 @@ extension NSManagedObjectContext {
     }
   }
 
-  public typealias ShouldMergeChanges = (_ from: NSManagedObjectContext, _ to: NSManagedObjectContext) -> Bool
-
   /// Sets up a merge-changes observer based on a given condition block. Merging
   /// only occurs if the condition block answers `true`, given the context that
   /// merging will take changes from, as well as the context into which the
@@ -169,18 +167,26 @@ extension NSManagedObjectContext {
   ///   another thread.
   /// - parameter from: Context to merge changes from.
   /// - parameter to: Context for merging to.
-  public func automaticallyMergesChanges(queue: OperationQueue? = nil,
-                                         shouldMergeChanges: @escaping ShouldMergeChanges) -> NSObjectProtocol {
-    return NotificationCenter.default.addObserver(forName: Notification.Name.NSManagedObjectContextDidSave,
-                                                  object: nil,
-                                                  queue: queue) { [weak self] (notification) in
-      guard let to = self,
-            let from = notification.object as? NSManagedObjectContext,
-            shouldMergeChanges(from, to) else {
+  public func automaticallyMergesChanges(queue: OperationQueue? = nil, shouldMergeChanges: @escaping (_ from: NSManagedObjectContext, _ to: NSManagedObjectContext) -> Bool) -> NSObjectProtocol {
+    let block: (Notification) -> Void = { [weak self] (notification) in
+      guard let to = self else {
         return
       }
-      to.mergeChanges(fromContextDidSave: notification)
+      guard let from = notification.object as? NSManagedObjectContext else {
+        return
+      }
+      guard shouldMergeChanges(from, to) else {
+        return
+      }
+      // Merge changes from the notification within this context's queue. Doing
+      // so also triggers the context to process any pending changes.
+      to.perform {
+        to.mergeChanges(fromContextDidSave: notification)
+      }
     }
+    let center = NotificationCenter.default
+    let name = Notification.Name.NSManagedObjectContextDidSave
+    return center.addObserver(forName: name, object: nil, queue: queue, using: block)
   }
 
   /// Sets up an observer block for context-will-save notifications. Updates
