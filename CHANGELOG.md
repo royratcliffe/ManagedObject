@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.7.1](https://github.com/royratcliffe/managedobject/tree/0.7.1) (2016-10-06)
+
+- Auto-merging changes merges within context's queue
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.7.0...0.7.1)
+
 ## [0.7.0](https://github.com/royratcliffe/managedobject/tree/0.7.0) (2016-09-08)
 
 - Fixes @escaping may only be applied to parameters of function type (Xcode 8 GM)
