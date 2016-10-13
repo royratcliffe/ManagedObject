@@ -44,7 +44,7 @@ extension NSManagedObjectContext {
   /// - returns: An array of entity types, or `nil` if the array of managed
   ///   objects cannot convert to an array of the required entities. Only throws
   ///   if there was an error during the fetch.
-  public func fetchAll<Entity: NSManagedObject>(_ entityType: Entity.Type) throws -> [Entity]? {
+  public func fetchAll<Entity: NSManagedObject>(_ entityType: Entity.Type) throws -> [Entity] {
     return try fetchAll(entityType.entityName)
   }
 
