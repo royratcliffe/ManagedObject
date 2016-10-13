@@ -18,6 +18,7 @@
 		78B145C11C9180C5002F733B /* ManagedObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B145C01C9180C5002F733B /* ManagedObjectTests.swift */; };
 		78B146381C9D1B3F002F733B /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B146371C9D1B3F002F733B /* StackTests.swift */; };
 		78BD14231CA44B4B0031287F /* NSManagedObject+ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD14221CA44B4B0031287F /* NSManagedObject+ManagedObject.swift */; };
+		78E759E71DAEA68500CB48E1 /* FetchedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E759E61DAEA68500CB48E1 /* FetchedResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		78B145C21C9180C5002F733B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78B146371C9D1B3F002F733B /* StackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
 		78BD14221CA44B4B0031287F /* NSManagedObject+ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+ManagedObject.swift"; sourceTree = "<group>"; };
+		78E759E61DAEA68500CB48E1 /* FetchedResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				78BD14221CA44B4B0031287F /* NSManagedObject+ManagedObject.swift */,
 				789B73F91D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift */,
 				789B73FB1D7EC25400B90F6B /* ObjectsDidChange.swift */,
+				78E759E61DAEA68500CB48E1 /* FetchedResults.swift */,
 				78B145B61C9180C5002F733B /* Info.plist */,
 			);
 			path = Sources;
@@ -241,6 +244,7 @@
 				786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */,
 				7881C7541C9A98BB001280B2 /* Stack.swift in Sources */,
 				787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */,
+				78E759E71DAEA68500CB48E1 /* FetchedResults.swift in Sources */,
 				789B73FA1D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift in Sources */,
 				789B73FC1D7EC25400B90F6B /* ObjectsDidChange.swift in Sources */,
 				7839820F1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift in Sources */,
