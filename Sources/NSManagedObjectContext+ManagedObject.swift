@@ -167,7 +167,9 @@ extension NSManagedObjectContext {
   ///   another thread.
   /// - parameter from: Context to merge changes from.
   /// - parameter to: Context for merging to.
-  public func automaticallyMergesChanges(queue: OperationQueue? = nil, shouldMergeChanges: @escaping (_ from: NSManagedObjectContext, _ to: NSManagedObjectContext) -> Bool) -> NSObjectProtocol {
+  public func automaticallyMergesChanges(queue: OperationQueue? = nil,
+                                         shouldMergeChanges: @escaping (_ from: NSManagedObjectContext,
+                                                                        _ to: NSManagedObjectContext) -> Bool) -> NSObjectProtocol {
     let block: (Notification) -> Void = { [weak self] (notification) in
       guard let to = self else {
         return
