@@ -44,7 +44,7 @@ extension NSManagedObjectContext {
   /// - returns: An array of entity types, or `nil` if the array of managed
   ///   objects cannot convert to an array of the required entities. Only throws
   ///   if there was an error during the fetch.
-  public func fetchAll<Entity: NSManagedObject>(_ entityType: Entity.Type) throws -> [Entity]? {
+  public func fetchAll<Entity: NSManagedObject>(_ entityType: Entity.Type) throws -> [Entity] {
     return try fetchAll(entityType.entityName)
   }
 
@@ -167,7 +167,9 @@ extension NSManagedObjectContext {
   ///   another thread.
   /// - parameter from: Context to merge changes from.
   /// - parameter to: Context for merging to.
-  public func automaticallyMergesChanges(queue: OperationQueue? = nil, shouldMergeChanges: @escaping (_ from: NSManagedObjectContext, _ to: NSManagedObjectContext) -> Bool) -> NSObjectProtocol {
+  public func automaticallyMergesChanges(queue: OperationQueue? = nil,
+                                         shouldMergeChanges: @escaping (_ from: NSManagedObjectContext,
+                                                                        _ to: NSManagedObjectContext) -> Bool) -> NSObjectProtocol {
     let block: (Notification) -> Void = { [weak self] (notification) in
       guard let to = self else {
         return

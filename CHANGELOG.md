@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.8.0](https://github.com/royratcliffe/managedobject/tree/0.8.0) (2016-10-13)
+
+- SwiftLint warning fix: long lines
+- FIX: `fetchAll<Entity>` never answers `nil` instead of array
+- Added `FetchResults` wrapper
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.7.1...0.8.0)
+
 ## [0.7.1](https://github.com/royratcliffe/managedobject/tree/0.7.1) (2016-10-06)
 
 - Auto-merging changes merges within context's queue
