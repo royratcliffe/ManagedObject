@@ -95,6 +95,20 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
     controller = nil
   }
 
+  /// - parameter indexPath: Section and row index of fetched object.
+  /// - returns: the fetched object at the given index path. Answers `nil` if no
+  ///   controller set up.
+  public func object(at indexPath: IndexPath) -> Result? {
+    return controller?.object(at: indexPath)
+  }
+
+  /// - parameter object: Fetched object to look up.
+  /// - returns: Index path (section and row index) of the fetched object, or
+  ///   `nil` if no controller.
+  public func indexPath(forObject object: Result) -> IndexPath? {
+    return controller?.indexPath(forObject: object)
+  }
+
   public var fetchedObject: Result? {
     return fetchedObjects.first
   }
