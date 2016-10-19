@@ -35,8 +35,14 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
 
   public weak var delegate: NSFetchedResultsControllerDelegate?
 
+  /// Sets up a new fetch request. The new fetch limit is 1 and the sort
+  /// descriptors inherit from any previous request. The descriptors are `nil`
+  /// otherwise, and will need to be configured before fetching.
+  /// - parameter objectID: Identifier specifying the object to fetch.
   public func request(objectID: NSManagedObjectID) {
-    request = FetchedResults.request(for: objectID)
+    let request = FetchedResults.request(for: objectID)
+    request.sortDescriptors = self.request?.sortDescriptors
+    self.request = request
   }
 
   public func request(object: NSManagedObject) {
