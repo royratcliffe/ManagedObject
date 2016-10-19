@@ -175,10 +175,13 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
     return Request(entityName: entityName)
   }
 
+  /// Importantly, the request does *not* include any sort descriptors, but
+  /// needs one or more descriptors; otherwise the controller will fail. Add
+  /// sort descriptors to the result before using it.
+  /// - parameter objectID: Identifier specifying the object to fetch.
   public static func request(for objectID: NSManagedObjectID) -> Request {
     let request = FetchedResults.requestForEntity()
     request.predicate = NSPredicate(format: "SELF = %@", objectID)
-    request.sortDescriptors = [NSSortDescriptor(key: "SELF", ascending: false)]
     request.fetchLimit = 1
     return request
   }
