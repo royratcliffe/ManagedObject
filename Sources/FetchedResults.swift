@@ -31,7 +31,7 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
 
   public typealias Controller = NSFetchedResultsController<Result>
 
-  var controller: Controller?
+  public private(set) var controller: Controller?
 
   public weak var delegate: NSFetchedResultsControllerDelegate?
 
