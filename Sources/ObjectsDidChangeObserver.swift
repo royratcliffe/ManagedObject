@@ -83,7 +83,7 @@ public class ObjectsDidChangeObserver: NSObject {
           // not a mutable reference.
           objectsByEntityNameByChangeKey[changeKey] = objectsByEntityName
         } else {
-          objectsByEntityNameByChangeKey[changeKey] = [entityName: objects]
+          objectsByEntityNameByChangeKey[changeKey] = [entityName: [object]]
         }
       }
     }
