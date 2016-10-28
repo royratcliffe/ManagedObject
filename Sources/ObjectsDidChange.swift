@@ -26,7 +26,7 @@ import Foundation
 import CoreData
 
 /// Wraps an objects-did-change notification's context and user information.
-public struct ObjectsDidChange {
+public struct ObjectsDidChange: CustomDebugStringConvertible {
 
   public let context: NSManagedObjectContext
 
@@ -36,6 +36,7 @@ public struct ObjectsDidChange {
   /// or if the notification's user information does not exist. User information
   /// should always be a dictionary.
   init?(notification: Notification) {
+    guard NSNotification.Name.NSManagedObjectContextObjectsDidChange == notification.name else { return nil }
     guard let context = notification.object as? NSManagedObjectContext else { return nil }
     guard let userInfo = notification.userInfo else { return nil }
     self.context = context
@@ -50,7 +51,7 @@ public struct ObjectsDidChange {
     return objects(key)?.flatMap { $0 as? NSManagedObject }
   }
 
-  public func manageObjectIDs(_ key: String) -> [NSManagedObjectID]? {
+  public func managedObjectIDs(_ key: String) -> [NSManagedObjectID]? {
     return managedObjects(key)?.map { $0.objectID }
   }
 
@@ -81,7 +82,7 @@ public struct ObjectsDidChange {
   public func keys(for objectID: NSManagedObjectID) -> [String] {
     var keys = [String]()
     for key in ObjectsDidChange.keys {
-      if let objectIDs = manageObjectIDs(key), objectIDs.contains(objectID) {
+      if let objectIDs = managedObjectIDs(key), objectIDs.contains(objectID) {
         keys.append(key)
       }
     }
@@ -92,6 +93,40 @@ public struct ObjectsDidChange {
     return keys(for: object.objectID)
   }
 
+  /// Ignores non-managed objects and managed objects without entity names, if
+  /// those conditions are possible.
+  public var managedObjectsByEntityNameByChangeKey: [String: [String: [NSManagedObject]]] {
+    var objectsByEntityNameByChangeKey = [String: [String: [NSManagedObject]]]()
+    for changeKey in ObjectsDidChange.keys {
+      guard let objects = managedObjects(changeKey) else {
+        continue
+      }
+      for object in objects {
+        let entity = object.entity
+        guard let entityName = entity.name else {
+          continue
+        }
+        if var objectsByEntityName = objectsByEntityNameByChangeKey[changeKey] {
+          if var objects = objectsByEntityName[entityName] {
+            objects.append(object)
+            // Dictionary getters assigned to a variable make a mutable
+            // copy. Changes needs re-assigning to the dictionary after
+            // amending.
+            objectsByEntityName[entityName] = objects
+          } else {
+            objectsByEntityName[entityName] = [object]
+          }
+          // Update the key-pair; objectsByEntityName is only a mutable copy,
+          // not a mutable reference.
+          objectsByEntityNameByChangeKey[changeKey] = objectsByEntityName
+        } else {
+          objectsByEntityNameByChangeKey[changeKey] = [entityName: [object]]
+        }
+      }
+    }
+    return objectsByEntityNameByChangeKey
+  }
+
   public static let keys = [
     NSInsertedObjectsKey,
     NSUpdatedObjectsKey,
@@ -99,5 +134,28 @@ public struct ObjectsDidChange {
     NSRefreshedObjectsKey,
     NSInvalidatedObjectsKey
   ]
+
+  public var debugDescription: String {
+    var description = [String]()
+    for (changeKey, objectsByEntityName) in managedObjectsByEntityNameByChangeKey.sorted(by: { (lhs, rhs) in
+      ObjectsDidChange.keys.index(of: lhs.key)! < ObjectsDidChange.keys.index(of: rhs.key)!
+    }) {
+      description.append("\(changeKey):")
+      for (entityName, objects) in objectsByEntityName.sorted(by: { (lhs, rhs) in
+        lhs.key < rhs.key
+      }) {
+        description.append("\(entityName)[\(objects.count)]")
+        for object in objects {
+          let identifier = object.objectID
+          var component = identifier.uriRepresentation().lastPathComponent
+          if identifier.isTemporaryID {
+            component = component.components(separatedBy: "-").last!
+          }
+          description.append(component)
+        }
+      }
+    }
+    return description.joined(separator: " ")
+  }
 
 }

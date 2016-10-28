@@ -11,6 +11,7 @@
 		786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */; };
 		787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */; };
 		7881C7541C9A98BB001280B2 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881C7531C9A98BB001280B2 /* Stack.swift */; };
+		78907ED11DC39BF100E0DC11 /* NSFetchedRequest+ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78907ED01DC39BF100E0DC11 /* NSFetchedRequest+ManagedObject.swift */; };
 		789B73FA1D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B73F91D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift */; };
 		789B73FC1D7EC25400B90F6B /* ObjectsDidChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B73FB1D7EC25400B90F6B /* ObjectsDidChange.swift */; };
 		78B145B51C9180C5002F733B /* ManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B145B41C9180C5002F733B /* ManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +37,7 @@
 		786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreRequestObserver.swift; sourceTree = "<group>"; };
 		787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsDidChangeObserver.swift; sourceTree = "<group>"; };
 		7881C7531C9A98BB001280B2 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		78907ED01DC39BF100E0DC11 /* NSFetchedRequest+ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedRequest+ManagedObject.swift"; sourceTree = "<group>"; };
 		789B73F91D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+ManagedObject.swift"; sourceTree = "<group>"; };
 		789B73FB1D7EC25400B90F6B /* ObjectsDidChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsDidChange.swift; sourceTree = "<group>"; };
 		78B145B11C9180C5002F733B /* ManagedObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ManagedObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,7 @@
 				7839820E1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift */,
 				78BD14221CA44B4B0031287F /* NSManagedObject+ManagedObject.swift */,
 				789B73F91D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift */,
+				78907ED01DC39BF100E0DC11 /* NSFetchedRequest+ManagedObject.swift */,
 				789B73FB1D7EC25400B90F6B /* ObjectsDidChange.swift */,
 				78E759E61DAEA68500CB48E1 /* FetchedResults.swift */,
 				78B145B61C9180C5002F733B /* Info.plist */,
@@ -171,7 +174,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Pioneering Software, United Kingdom";
 				TargetAttributes = {
 					78B145B01C9180C5002F733B = {
@@ -245,6 +248,7 @@
 				7881C7541C9A98BB001280B2 /* Stack.swift in Sources */,
 				787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */,
 				78E759E71DAEA68500CB48E1 /* FetchedResults.swift in Sources */,
+				78907ED11DC39BF100E0DC11 /* NSFetchedRequest+ManagedObject.swift in Sources */,
 				789B73FA1D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift in Sources */,
 				789B73FC1D7EC25400B90F6B /* ObjectsDidChange.swift in Sources */,
 				7839820F1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift in Sources */,
@@ -284,8 +288,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -332,8 +338,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -364,6 +372,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -383,6 +392,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

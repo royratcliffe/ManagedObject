@@ -31,12 +31,18 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
 
   public typealias Controller = NSFetchedResultsController<Result>
 
-  var controller: Controller?
+  public private(set) var controller: Controller?
 
   public weak var delegate: NSFetchedResultsControllerDelegate?
 
+  /// Sets up a new fetch request. The new fetch limit is 1 and the sort
+  /// descriptors inherit from any previous request. The descriptors are `nil`
+  /// otherwise, and will need to be configured before fetching.
+  /// - parameter objectID: Identifier specifying the object to fetch.
   public func request(objectID: NSManagedObjectID) {
-    request = FetchedResults.request(for: objectID)
+    let request = FetchedResults.request(for: objectID)
+    request.sortDescriptors = self.request?.sortDescriptors
+    self.request = request
   }
 
   public func request(object: NSManagedObject) {
@@ -78,7 +84,7 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
     }
   }
 
-  func setUpController() {
+  public func setUpController() {
     guard let request = request else { return }
     guard let context = context else { return }
     tearDownController()
@@ -90,9 +96,23 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
     controller = newController
   }
 
-  func tearDownController() {
+  public func tearDownController() {
     controller?.delegate = nil
     controller = nil
+  }
+
+  /// - parameter indexPath: Section and row index of fetched object.
+  /// - returns: the fetched object at the given index path. Answers `nil` if no
+  ///   controller set up.
+  public func object(at indexPath: IndexPath) -> Result? {
+    return controller?.object(at: indexPath)
+  }
+
+  /// - parameter object: Fetched object to look up.
+  /// - returns: Index path (section and row index) of the fetched object, or
+  ///   `nil` if no controller.
+  public func indexPath(forObject object: Result) -> IndexPath? {
+    return controller?.indexPath(forObject: object)
   }
 
   public var fetchedObject: Result? {
@@ -161,10 +181,13 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
     return Request(entityName: entityName)
   }
 
+  /// Importantly, the request does *not* include any sort descriptors, but
+  /// needs one or more descriptors; otherwise the controller will fail. Add
+  /// sort descriptors to the result before using it.
+  /// - parameter objectID: Identifier specifying the object to fetch.
   public static func request(for objectID: NSManagedObjectID) -> Request {
     let request = FetchedResults.requestForEntity()
     request.predicate = NSPredicate(format: "SELF = %@", objectID)
-    request.sortDescriptors = [NSSortDescriptor(key: "SELF", ascending: false)]
     request.fetchLimit = 1
     return request
   }
@@ -214,7 +237,7 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
 
   public func mutableCopy(with zone: NSZone? = nil) -> Any {
     let copy = FetchedResults()
-    copy.request = request
+    copy.request = request?.copy() as? NSFetchRequest<Result>
     copy.context = context
     copy.sectionNameKeyPath = sectionNameKeyPath
     copy.cacheName = cacheName
