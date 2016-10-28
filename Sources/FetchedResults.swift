@@ -237,7 +237,7 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
 
   public func mutableCopy(with zone: NSZone? = nil) -> Any {
     let copy = FetchedResults()
-    copy.request = request
+    copy.request = request?.copy() as? NSFetchRequest<Result>
     copy.context = context
     copy.sectionNameKeyPath = sectionNameKeyPath
     copy.cacheName = cacheName
