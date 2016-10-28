@@ -131,11 +131,11 @@ public class ObjectsDidChangeObserver: NSObject {
   // MARK: - Notification Centre
 
   /// Adds this observer to the given notification centre.
-  public func add(to center: NotificationCenter) {
+  public func add(to center: NotificationCenter, context: NSManagedObjectContext? = nil) {
     center.addObserver(self,
       selector: #selector(ObjectsDidChangeObserver.objectsDidChange(_:)),
       name: NSNotification.Name.NSManagedObjectContextObjectsDidChange,
-      object: nil)
+      object: context)
   }
 
   /// Removes this observer from the given notification centre.
