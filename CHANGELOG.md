@@ -1,5 +1,24 @@
 # Change Log
 
+## [0.9.0](https://github.com/royratcliffe/managedobject/tree/0.9.0) (2016-10-28)
+
+- `ObjectsDidChange` implements custom debug string convertible protocol
+- Refactored `managedObjectsByEntityNameByChangeKey `
+- Check for correct notification name in `ObjectsDidChange` initialiser
+- Fixed typo; managed not manage
+- Extensions for `NSFetchRequest`
+- Copying fetched results copies fetch request, if any
+- Public access to set-up and tear-down controller for fetched results
+- Objects-did-change observer can specify a `context` argument
+- Xcode 8.1 updates project: additional warnings; no framework code signing
+- Fix for initial objects by entity name by change key
+- Fetch results has public `controller` getter
+- `FetchResults.request(objectID:)` inherits sort descriptors
+- `FetchedResults.request(for:)` answers request without sort descriptors
+- `FetchedResults` adds methods `object(at:)` and `indexPath(forObject:)`
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.8.0...0.9.0)
+
 ## [0.8.0](https://github.com/royratcliffe/managedobject/tree/0.8.0) (2016-10-13)
 
 - SwiftLint warning fix: long lines
