@@ -26,7 +26,7 @@ import Foundation
 import CoreData
 
 /// Wraps an objects-did-change notification's context and user information.
-public struct ObjectsDidChange {
+public struct ObjectsDidChange: CustomDebugStringConvertible {
 
   public let context: NSManagedObjectContext
 
@@ -134,5 +134,28 @@ public struct ObjectsDidChange {
     NSRefreshedObjectsKey,
     NSInvalidatedObjectsKey
   ]
+
+  public var debugDescription: String {
+    var description = [String]()
+    for (changeKey, objectsByEntityName) in managedObjectsByEntityNameByChangeKey.sorted(by: { (lhs, rhs) in
+      ObjectsDidChange.keys.index(of: lhs.key)! < ObjectsDidChange.keys.index(of: rhs.key)!
+    }) {
+      description.append("\(changeKey):")
+      for (entityName, objects) in objectsByEntityName.sorted(by: { (lhs, rhs) in
+        lhs.key < rhs.key
+      }) {
+        description.append("\(entityName)[\(objects.count)]")
+        for object in objects {
+          let identifier = object.objectID
+          var component = identifier.uriRepresentation().lastPathComponent
+          if identifier.isTemporaryID {
+            component = component.components(separatedBy: "-").last!
+          }
+          description.append(component)
+        }
+      }
+    }
+    return description.joined(separator: " ")
+  }
 
 }
