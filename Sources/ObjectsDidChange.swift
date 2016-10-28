@@ -50,7 +50,7 @@ public struct ObjectsDidChange {
     return objects(key)?.flatMap { $0 as? NSManagedObject }
   }
 
-  public func manageObjectIDs(_ key: String) -> [NSManagedObjectID]? {
+  public func managedObjectIDs(_ key: String) -> [NSManagedObjectID]? {
     return managedObjects(key)?.map { $0.objectID }
   }
 
@@ -81,7 +81,7 @@ public struct ObjectsDidChange {
   public func keys(for objectID: NSManagedObjectID) -> [String] {
     var keys = [String]()
     for key in ObjectsDidChange.keys {
-      if let objectIDs = manageObjectIDs(key), objectIDs.contains(objectID) {
+      if let objectIDs = managedObjectIDs(key), objectIDs.contains(objectID) {
         keys.append(key)
       }
     }
