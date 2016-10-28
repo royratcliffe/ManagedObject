@@ -36,6 +36,7 @@ public struct ObjectsDidChange {
   /// or if the notification's user information does not exist. User information
   /// should always be a dictionary.
   init?(notification: Notification) {
+    guard NSNotification.Name.NSManagedObjectContextObjectsDidChange == notification.name else { return nil }
     guard let context = notification.object as? NSManagedObjectContext else { return nil }
     guard let userInfo = notification.userInfo else { return nil }
     self.context = context
