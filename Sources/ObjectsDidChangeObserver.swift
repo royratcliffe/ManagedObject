@@ -48,49 +48,11 @@ public class ObjectsDidChangeObserver: NSObject {
   /// controllers automatically if the Objective-C run-time environment has a
   /// controller class matching the entity name plus `ChangeController`.
   @objc private func objectsDidChange(_ notification: Notification) {
-    guard let userInfo = (notification as NSNotification).userInfo,
-          NSNotification.Name.NSManagedObjectContextObjectsDidChange == notification.name else {
-      return
-    }
-
-    // Ignores non-managed objects and managed objects without entity names, if
-    // those conditions are possible.
-    let changeKeys = [NSInsertedObjectsKey, NSUpdatedObjectsKey, NSDeletedObjectsKey]
-    var objectsByEntityNameByChangeKey = [String: [String: [NSManagedObject]]]()
-    for changeKey in changeKeys {
-      guard let set = userInfo[changeKey] as? NSSet else {
-        continue
-      }
-      let objects = set.flatMap { object in
-        return object as? NSManagedObject
-      }
-      for object in objects {
-        let entity = object.entity
-        guard let entityName = entity.name else {
-          continue
-        }
-        if var objectsByEntityName = objectsByEntityNameByChangeKey[changeKey] {
-          if var objects = objectsByEntityName[entityName] {
-            objects.append(object)
-            // Dictionary getters assigned to a variable make a mutable
-            // copy. Changes needs re-assigning to the dictionary after
-            // amending.
-            objectsByEntityName[entityName] = objects
-          } else {
-            objectsByEntityName[entityName] = [object]
-          }
-          // Update the key-pair; objectsByEntityName is only a mutable copy,
-          // not a mutable reference.
-          objectsByEntityNameByChangeKey[changeKey] = objectsByEntityName
-        } else {
-          objectsByEntityNameByChangeKey[changeKey] = [entityName: [object]]
-        }
-      }
-    }
+    guard let objectsDidChange = ObjectsDidChange(notification: notification) else { return }
 
     // Iterate change keys and entity names. The change key becomes part of the
     // selector. The entity name becomes part of the controller class name.
-    for (changeKey, objectsByEntityName) in objectsByEntityNameByChangeKey {
+    for (changeKey, objectsByEntityName) in objectsDidChange.managedObjectsByEntityNameByChangeKey {
       let selector = Selector("\(changeKey)Objects:")
       for (entityName, objects) in objectsByEntityName {
         var changeController = changeControllersByEntityName[entityName]
