@@ -84,7 +84,7 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
     }
   }
 
-  func setUpController() {
+  public func setUpController() {
     guard let request = request else { return }
     guard let context = context else { return }
     tearDownController()
@@ -96,7 +96,7 @@ open class FetchedResults<Result: NSFetchRequestResult>: NSObject, NSFetchedResu
     controller = newController
   }
 
-  func tearDownController() {
+  public func tearDownController() {
     controller?.delegate = nil
     controller = nil
   }
