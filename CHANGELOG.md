@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.9.1](https://github.com/royratcliffe/managedobject/tree/0.9.1) (2016-10-31)
+
+- Re-installed guard condition for objects-did-change notification name
+- `ObjectsDidChange` wraps merge-changes notifications also
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.9.0...0.9.1)
+
 ## [0.9.0](https://github.com/royratcliffe/managedobject/tree/0.9.0) (2016-10-28)
 
 - `ObjectsDidChange` implements custom debug string convertible protocol
