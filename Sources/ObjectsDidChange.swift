@@ -25,7 +25,10 @@
 import Foundation
 import CoreData
 
-/// Wraps an objects-did-change notification's context and user information.
+/// Wraps an objects-did-change notification's context and user
+/// information. Also wraps the contents of a merge-changes notification; useful
+/// for debugging by logging the debug description. Merge-changes notifications
+/// also carry inserted, updated and deleted sets of objects.
 public struct ObjectsDidChange: CustomDebugStringConvertible {
 
   public let context: NSManagedObjectContext
@@ -36,7 +39,6 @@ public struct ObjectsDidChange: CustomDebugStringConvertible {
   /// or if the notification's user information does not exist. User information
   /// should always be a dictionary.
   init?(notification: Notification) {
-    guard NSNotification.Name.NSManagedObjectContextObjectsDidChange == notification.name else { return nil }
     guard let context = notification.object as? NSManagedObjectContext else { return nil }
     guard let userInfo = notification.userInfo else { return nil }
     self.context = context

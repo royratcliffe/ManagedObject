@@ -48,6 +48,7 @@ public class ObjectsDidChangeObserver: NSObject {
   /// controllers automatically if the Objective-C run-time environment has a
   /// controller class matching the entity name plus `ChangeController`.
   @objc private func objectsDidChange(_ notification: Notification) {
+    guard NSNotification.Name.NSManagedObjectContextObjectsDidChange == notification.name else { return }
     guard let objectsDidChange = ObjectsDidChange(notification: notification) else { return }
 
     // Iterate change keys and entity names. The change key becomes part of the
