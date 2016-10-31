@@ -53,6 +53,7 @@ public struct Stack {
   public lazy var masterContext: NSManagedObjectContext = {
     let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     context.persistentStoreCoordinator = self.persistentStoreCoordinator
+    context.name = "master"
     return context
   }()
 
@@ -62,6 +63,7 @@ public struct Stack {
   public lazy var mainContext: NSManagedObjectContext = {
     let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     context.parent = self.masterContext
+    context.name = "main"
     return context
   }()
 
@@ -72,6 +74,11 @@ public struct Stack {
   public mutating func newWorkerContext() -> NSManagedObjectContext {
     let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     context.parent = self.mainContext
+    struct WorkerContext {
+      static var counter = 0
+    }
+    WorkerContext.counter += 1
+    context.name = "worker-\(WorkerContext.counter)"
     return context
   }
 
