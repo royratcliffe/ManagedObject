@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7839820F1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839820E1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift */; };
+		7858E3901DC873B0005587C5 /* NSEntityDescription+ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7858E38F1DC873B0005587C5 /* NSEntityDescription+ManagedObject.swift */; };
 		786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */; };
 		787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */; };
 		7881C7541C9A98BB001280B2 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7881C7531C9A98BB001280B2 /* Stack.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		7839820E1CA14FCC00CC03A8 /* NSManagedObjectContext+ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+ManagedObject.swift"; sourceTree = "<group>"; };
+		7858E38F1DC873B0005587C5 /* NSEntityDescription+ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+ManagedObject.swift"; sourceTree = "<group>"; };
 		786CB5E31C9EC55A00832835 /* PersistentStoreRequestObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStoreRequestObserver.swift; sourceTree = "<group>"; };
 		787911AA1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsDidChangeObserver.swift; sourceTree = "<group>"; };
 		7881C7531C9A98BB001280B2 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				78BD14221CA44B4B0031287F /* NSManagedObject+ManagedObject.swift */,
 				789B73F91D7EC0FE00B90F6B /* NotificationCenter+ManagedObject.swift */,
 				78907ED01DC39BF100E0DC11 /* NSFetchedRequest+ManagedObject.swift */,
+				7858E38F1DC873B0005587C5 /* NSEntityDescription+ManagedObject.swift */,
 				789B73FB1D7EC25400B90F6B /* ObjectsDidChange.swift */,
 				78E759E61DAEA68500CB48E1 /* FetchedResults.swift */,
 				78B145B61C9180C5002F733B /* Info.plist */,
@@ -246,6 +249,7 @@
 				78BD14231CA44B4B0031287F /* NSManagedObject+ManagedObject.swift in Sources */,
 				786CB5E41C9EC55A00832835 /* PersistentStoreRequestObserver.swift in Sources */,
 				7881C7541C9A98BB001280B2 /* Stack.swift in Sources */,
+				7858E3901DC873B0005587C5 /* NSEntityDescription+ManagedObject.swift in Sources */,
 				787911AB1C9FEDEC00F0B3A3 /* ObjectsDidChangeObserver.swift in Sources */,
 				78E759E71DAEA68500CB48E1 /* FetchedResults.swift in Sources */,
 				78907ED11DC39BF100E0DC11 /* NSFetchedRequest+ManagedObject.swift in Sources */,
