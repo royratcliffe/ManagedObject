@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.10.0](https://github.com/royratcliffe/managedobject/tree/0.10.0) (2016-11-03)
+
+- Added entity-description helpers
+- Name the master, main and worker contexts; useful for debugging
+
+[Full Change Log](https://github.com/royratcliffe/managedobject/compare/0.9.1...0.10.0)
+
 ## [0.9.1](https://github.com/royratcliffe/managedobject/tree/0.9.1) (2016-10-31)
 
 - Re-installed guard condition for objects-did-change notification name
